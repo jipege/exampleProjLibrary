@@ -1,5 +1,3 @@
-booksCollection = []
-
 const createBook = (name, price, ageRestr)=>{
     this.name = name;
     this.price = `$ ${price}`;
