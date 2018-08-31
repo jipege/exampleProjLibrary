@@ -1,4 +1,4 @@
-import { createUser.js } from 'createUser.js';
+import { createUser } from 'createUser.js';
 
 User.Prototype.removeBook = (bookName) => {
     for (let i = 0; i<this.collection.length; i++) {
