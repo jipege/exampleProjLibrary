@@ -8,6 +8,7 @@ class User {
   constructor(user) {
     this.setUser(user);
     this.ID;
+    this.collection = [];
   }
 
   assignID (){
