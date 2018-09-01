@@ -1,5 +1,5 @@
 const isValidUser = require("../utils/isValidUser");
-
+import { PSEUDO_ID } from "../consts/dataBases.js"
 class User {
   /**
    * Вместо прототипного программирования
@@ -7,6 +7,12 @@ class User {
    */
   constructor(user) {
     this.setUser(user);
+    this.ID;
+  }
+
+  assignID (){
+    this.ID = PSEUDO_ID;
+    PSEUDO_ID+=1;
   }
 
   /**
@@ -41,6 +47,7 @@ class User {
      */
     this.setUser(Object.assign({}, this.user, data));
   }
+
 }
 
 /**
