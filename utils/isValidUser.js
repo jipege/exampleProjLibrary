@@ -15,6 +15,7 @@ const isValidUser = user => {
    * Создаем константную ссылку на неконстантный объект
    * в памяти
    */
+
   const errors = {};
 
   if (!user) {

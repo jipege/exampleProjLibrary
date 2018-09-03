@@ -1,2 +1,3 @@
-module.exports.BOOK_NAME = 'name';
-module.exports.AUTHOR_NAME = 'author';
+module.exports.BOOK_NAME = "name";
+module.exports.BOOK_AUTHOR = "author";
+module.exports.BOOK_ID = "id";

@@ -1,20 +1,19 @@
-const { BOOK_NAME, BOOK_AUTHOR } = require('../consts/book.js');
+const { BOOK_NAME, BOOK_AUTHOR } = require("../consts/book");
 
 const hasErrors = errors => JSON.stringify(errors) !== JSON.stringify({});
 
 const isValidBook = book => {
-  
   const errors = {};
 
   if (!book) {
-    errors.user = "Данные о книге не обнаружены";
+    errors.book = "Данные о книге не обнаружены";
   } else if (typeof book !== "object") {
-    errors.user = "Некорректный тип данных";
+    errors.book = "Некорректный тип данных";
   }
 
-  /*if (!book[BOOK_NAME]) {
-    *errors[BOOK_NAME] = "Название не было передано";
-  }*/
+  if (!book[BOOK_NAME]) {
+    errors[BOOK_NAME] = "Название не было передано";
+  }
 
   if (!book[BOOK_AUTHOR]) {
     errors[BOOK_AUTHOR] = "Имя автора не заполнено";

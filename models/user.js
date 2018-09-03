@@ -1,6 +1,6 @@
 const isValidUser = require("../utils/isValidUser");
 const hashObjectToString = require("../utils/hashObjectToString");
-const { USER_ID } = require("../consts/user");
+const { USER_ID, USER_NAME, USER_AGE } = require("../consts/user");
 
 class User {
   /**
@@ -18,7 +18,6 @@ class User {
     const errorsOrBool = isValidUser(user);
 
     if (typeof errorsOrBool === "boolean") {
-
       /**
        * Fancy
        */
@@ -29,9 +28,9 @@ class User {
       /**
        * Simple
        */
-      this.user = user;
-      this.user[USER_ID] = hashObjectToString(user);
-
+      this[USER_NAME] = user[USER_NAME];
+      this[USER_AGE] = user[USER_AGE];
+      this[USER_ID] = hashObjectToString(user);
     } else if (typeof errorsOrBool === "object") {
       console.log("User validation errors", errorsOrBool);
       /**
@@ -56,7 +55,6 @@ class User {
      */
     this.setUser(Object.assign({}, this.user, data));
   }
-
 }
 
 /**
