@@ -2,7 +2,7 @@ const isValidBook = require("../utils/isValidBook");
 
 class Book {
 
-  constructor(Book) {
+  constructor(book) {
     this.setBook(book);
   }
 

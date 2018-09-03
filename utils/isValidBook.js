@@ -12,9 +12,9 @@ const isValidBook = book => {
     errors.user = "Некорректный тип данных";
   }
 
-  if (!book[BOOK_NAME]) {
-    errors[BOOK_NAME] = "Название не было передано";
-  }
+  /*if (!book[BOOK_NAME]) {
+    *errors[BOOK_NAME] = "Название не было передано";
+  }*/
 
   if (!book[BOOK_AUTHOR]) {
     errors[BOOK_AUTHOR] = "Имя автора не заполнено";
@@ -29,4 +29,4 @@ const isValidBook = book => {
   return true;
 };
 
-module.exports = isValidUser;
+module.exports = isValidBook;

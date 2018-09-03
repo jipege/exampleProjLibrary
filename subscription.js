@@ -5,7 +5,8 @@ const checkSub = (age, passport) => {
     });
     return promise;
 };
-checkSub(13, True)
+
+checkSub(13, true)
     .then (console.log(`Добро пожаловать!`))
     .catch (console.log(`Приносим свои извинения`));
 

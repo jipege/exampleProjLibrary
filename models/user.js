@@ -1,5 +1,7 @@
 const isValidUser = require("../utils/isValidUser");
-import { PSEUDO_ID } from "../consts/dataBases.js"
+const hashObjectToString = require("../utils/hashObjectToString");
+const { USER_ID } = require("../consts/user");
+
 class User {
   /**
    * Вместо прототипного программирования
@@ -7,13 +9,6 @@ class User {
    */
   constructor(user) {
     this.setUser(user);
-    this.ID;
-    this.collection = [];
-  }
-
-  assignID (){
-    this.ID = PSEUDO_ID;
-    PSEUDO_ID+=1;
   }
 
   /**
@@ -23,7 +18,20 @@ class User {
     const errorsOrBool = isValidUser(user);
 
     if (typeof errorsOrBool === "boolean") {
+
+      /**
+       * Fancy
+       */
+      // this.user = Object.assign({}, user, {
+      //   [USER_ID]: hashObjectToString(user);
+      // })
+
+      /**
+       * Simple
+       */
       this.user = user;
+      this.user[USER_ID] = hashObjectToString(user);
+
     } else if (typeof errorsOrBool === "object") {
       console.log("User validation errors", errorsOrBool);
       /**
