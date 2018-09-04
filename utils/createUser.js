@@ -6,4 +6,4 @@ module.exports = user => {
     db.pushUser(newUser);
 
     return newUser;
-}
+};

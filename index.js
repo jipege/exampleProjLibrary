@@ -12,7 +12,7 @@ const { db } = require("./db");
  * Consts
  */
 const { USER_AGE, USER_NAME } = require("./consts/user");
-const { BOOK_NAME, BOOK_AUTHOR } = require("./consts/book");
+const { BOOK_TITLE, BOOK_AUTHOR } = require("./consts/book");
 
 /**
  * Pages
@@ -31,6 +31,8 @@ const Collection = require("./models/collection");
  */
 
 const bookAPI = require("./api/book");
+const collectionPost = require("./api/collections/collectionPost");
+const userRegister = require("./api/user/userRegister");
 
 const app = express();
 
@@ -48,18 +50,11 @@ app.get("/", (req, res) => {
  * Valid user object
  */
 
-app.post("/register", (req, res) => {
-  const newUser = createUser({
-    [USER_AGE]: req.body[USER_AGE],
-    [USER_NAME]: req.body[USER_NAME]
-  });
-
-  res.json(newUser);
-});
+app.post("/register", userRegister());
 
 app.post("/addbook", (req, res) => {
   const newBook = createBook({
-    [BOOK_NAME]: req.body[BOOK_NAME],
+    [BOOK_TITLE]: req.body[BOOK_TITLE],
     [BOOK_AUTHOR]: req.body[BOOK_AUTHOR]
   });
 
@@ -88,30 +83,7 @@ const checkBook = (req, res, next) => {
   next("Не указан ид книги");
 };
 
-app.post("/collection", [checkUser, checkBook], (req, res) => {
-  if (db.isCollectionExistByUserId(req.body.userId)) {
-    /**
-     * Add book to collection if it
-     * exist in db
-     */
-    const collection = db.getCollectionByUserId(req.body.userId);
-
-    collection.addBook(req.body.bookId);
-  } else {
-    /**
-     * Push instance of collection to db
-     * if not exist
-     */
-    db.pushCollection(
-      new Collection({
-        userId: req.body.userId,
-        books: [req.body.bookId]
-      })
-    );
-  }
-
-  res.json(db.getState());
-});
+app.post("/collection", [checkUser, checkBook], collectionPost(req, res));
 
 app.listen(process.env.SERVER_PORT, () => {
   console.log("listens on " + process.env.SERVER_PORT);

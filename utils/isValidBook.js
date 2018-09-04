@@ -1,4 +1,4 @@
-const { BOOK_NAME, BOOK_AUTHOR } = require("../consts/book");
+const { BOOK_TITLE, BOOK_AUTHOR } = require("../consts/book");
 
 const hasErrors = errors => JSON.stringify(errors) !== JSON.stringify({});
 
@@ -11,8 +11,8 @@ const isValidBook = book => {
     errors.book = "Некорректный тип данных";
   }
 
-  if (!book[BOOK_NAME]) {
-    errors[BOOK_NAME] = "Название не было передано";
+  if (!book[BOOK_TITLE]) {
+    errors[BOOK_TITLE] = "Название не было передано";
   }
 
   if (!book[BOOK_AUTHOR]) {

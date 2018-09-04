@@ -1,6 +1,6 @@
 const isValidBook = require("../utils/isValidBook");
 const hashObjectToString = require("../utils/hashObjectToString");
-const { BOOK_NAME, BOOK_AUTHOR, BOOK_ID } = require("../consts/book");
+const { BOOK_TITLE, BOOK_AUTHOR, BOOK_ID } = require("../consts/book");
 
 class Book {
   constructor(book) {
@@ -11,7 +11,7 @@ class Book {
     const errorsOrBool = isValidBook(book);
 
     if (typeof errorsOrBool === "boolean") {
-      this[BOOK_NAME] = book[BOOK_NAME];
+      this[BOOK_TITLE] = book[BOOK_TITLE];
       this[BOOK_AUTHOR] = book[BOOK_AUTHOR];
       this[BOOK_ID] = hashObjectToString(book);
     } else if (typeof errorsOrBool === "object") {
